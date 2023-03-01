@@ -1,10 +1,22 @@
-import Link from "next/link"
+// import Link from "next/link";
+import dynamic from 'next/dynamic'
+// import styles from "../styles/blog.module.css";
+import styles from "@styles/blog.module.css" ;
+import "../utils";
+
+// import DynamicHeader from '@components/dynamicHeader';
+
+const DynamicHeader = dynamic(() => import("../components/dynamicHeader"), {loading: () => 'Loading...'});
+
+
 
 export default function Blog({posts}) {
   return (
     <>
-      <h2>The Blog</h2>
-      {posts.map((post, index) => {
+      <p>Hello there</p>
+      <h2 className={styles.title}>The Blog</h2>
+      <DynamicHeader text={"My Dynamic Header"}/>
+      {/* {posts.map((post, index) => {
         return (
           <div key={index}>
             <h3>
@@ -14,16 +26,16 @@ export default function Blog({posts}) {
             <hr />
           </div>
         )
-      })}
+      })} */}
     </>
   )
 }
 
-export async function getStaticProps() {
-  const response = await fetch("https://learnwebcode.github.io/json-example/posts.json")
-  const {posts} = await response.json();
+// export async function getStaticProps() {
+//   const response = await fetch("https://learnwebcode.github.io/json-example/posts.json")
+//   const {posts} = await response.json();
 
-  return {
-    props: { posts }
-  }
-}
+//   return {
+//     props: { posts }
+//   }
+// }
